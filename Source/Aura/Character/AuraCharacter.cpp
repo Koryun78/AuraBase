@@ -17,3 +17,13 @@ AAuraCharacter::AAuraCharacter()
 	bUseControllerRotationYaw = false;
 
 }
+
+void AAuraCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+}
+
+void AAuraCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+}

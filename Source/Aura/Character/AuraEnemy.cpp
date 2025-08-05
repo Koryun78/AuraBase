@@ -2,20 +2,37 @@
 
 
 #include "AuraEnemy.h"
+
+#include "../AbilitySystem/AuraAbilitySystemComponent.h"
+#include "../AbilitySystem/AuraAttributeSet.h"
 #include "Aura/Aura.h"
 
 
 AAuraEnemy::AAuraEnemy()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+
+	AbilitySystemComp = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AuraAbilitySystemComp");
+	AbilitySystemComp->SetIsReplicated(true);
+
+	AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
+
+}
+
+void AAuraEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	check(AbilitySystemComp);
+	AbilitySystemComp->InitAbilityActorInfo(this, this);
+
 }
 
 void AAuraEnemy::HighlightActor()
 {
 	GetMesh()->SetRenderCustomDepth(true);
-	GetMesh()->SetCustomDepthStencilValue(CUSTOMD_DEPTH_RED);
+	GetMesh()->SetCustomDepthStencilValue(250.f);
 	Weapon->SetRenderCustomDepth(true);
-	Weapon->SetCustomDepthStencilValue(CUSTOMD_DEPTH_RED);
+	Weapon->SetCustomDepthStencilValue(250.f);
 }
 
 void AAuraEnemy::UnHighlightActor()

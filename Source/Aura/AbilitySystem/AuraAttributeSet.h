@@ -13,7 +13,6 @@ GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
-
 UCLASS()
 class AURA_API UAuraAttributeSet : public UAttributeSet
 {
